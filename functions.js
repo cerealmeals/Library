@@ -64,3 +64,27 @@ function toggleRead(book, read){
         book.read = "yes";
     }
 }
+
+const form = document.querySelector(".form");
+
+form.addEventListener("submit", processForm);
+
+
+function processForm(e){
+    if(e.preventDefault){
+        e.preventDefault();
+    }
+    
+    let author = document.getElementById("author").value;
+    let title = document.getElementById("title").value;
+    let pages = document.getElementById("pages").value;
+    let read = "no";
+    if(document.getElementById("yes").checked){
+        read = "yes";
+    }
+    book = new Book(author, title, pages, read);
+    myLibrary.push(book);
+    addBookToLibrary(book, (myLibrary.length-1));
+
+    return false;
+}
